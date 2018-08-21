@@ -9,7 +9,7 @@ class TodoItem extends Component {
     }
 
     render() {
-        const { text, checked, id, onToggle, onRemove } = this.props;
+        const { text, checked, id, onToggle, onRemove, color } = this.props;
 
         //리랜더링 된 id 값 출력 (shouldComponentUpdate 가 제대로 작동 하는지 확인)
         console.log(id);
@@ -20,7 +20,7 @@ class TodoItem extends Component {
                     e.stopPropagation(); // onToggle 이 실행되지 않도록 함
                     onRemove(id)}
                 }>&times;</div>
-                <div className={`todo-text ${checked && 'checked'}`}>
+                <div className={`todo-text ${checked && 'checked'}`} style={{color:color}}>
                     <div>{text}</div>
                 </div>
                 {
