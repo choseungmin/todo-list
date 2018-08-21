@@ -1,0 +1,29 @@
+.palette {
+    display: flex;
+    justify-content: center;
+}
+
+.color {
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.2;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.color:hover {
+    opacity: 0.75;
+}
+
+.color.active, .color:active {
+    opacity: 1;
+}
+
+.color + .color {
+    margin-left: 1rem;
+}
+
+.palette-template {
+    padding: 1rem;
+    background: #f1f3f5;
+}
