@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import TodoListTemplate from './components/TodoListTemplate'
+import TodoListTemplate from './components/TodoListTemplate';
 import Form from './components/Form';
-import TodoItemList from './components/TodoItemList'
+import TodoItemList from './components/TodoItemList';
+import PaletteList from './components/PaletteList';
 
 class App extends Component {
 
@@ -12,6 +13,12 @@ class App extends Component {
             { id: 0, text: 'aaa', checked: false },
             { id: 1, text: 'bbb', checked: true },
             { id: 2, text: 'ccc', checked: false },
+        ],
+        colors: [
+            {color: '#343a40', checked: true},
+            {color: '#f03e3e', checked: false},
+            {color: '#12b886', checked: false},
+            {color: '#228ae6', checked: false}
         ]
     };
 
@@ -67,9 +74,10 @@ class App extends Component {
         });
     };
 
+
     render() {
 
-        const { input, todos }= this.state;
+        const { input, todos, colors }= this.state;
         const {
             handleChange,
             handleCreate,
@@ -80,14 +88,14 @@ class App extends Component {
 
         return (
             <div className="App">
-                <TodoListTemplate form={(
-                    <Form
-                        value={input}
-                        onKeyPress={handleKeyPress}
-                        onChange={handleChange}
-                        onCreate={handleCreate}
-                    />
-                )}>
+                <TodoListTemplate
+                    form={(
+                        <Form value={input} onKeyPress={handleKeyPress} onChange={handleChange} onCreate={handleCreate} />
+                    )}
+                    palette={(
+                        <PaletteList colors={colors}/>
+                    )}
+                >
                     <TodoItemList
                         todos={todos}
                         onToggle={handleToggle}
