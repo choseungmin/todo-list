@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TodoItem.css';
 
-const TodoItem = ({ text, checked, id, onToggle, onRemove, color }) => {
+const TodoItem = ({ text, checked, index, onToggle, onRemove, color }) => {
 
     return (
-        <div className="todo-item" onClick={() => onToggle(id)}>
+        <div className="todo-item" onClick={() => onToggle(index)}>
             <div className="remove" onClick={(e) => {
                 e.stopPropagation(); //onToggle 실행 안되도록
-                onRemove(id)}
+                onRemove(index)}
             }>&times;</div>
             <div className={`todo-text ${checked && 'checked'}`} style={{color:color}}>
                 <div>{text}</div>
@@ -29,7 +29,7 @@ TodoItem.propTypes = {
 
 TodoItem.defaultProps = {
     text: 'aaa',
-    checked: true,
+    checked: false,
     id: 0,
     onToggle: () => console.warn('onToggle not defined'),
     onRemove: () => console.warn('onRemove not defined'),

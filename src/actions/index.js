@@ -18,9 +18,9 @@ export const remove = (id, todos) => ({
     todoState: todos
 });
 
-export const toggle = (id, todos) => ({
+export const toggle = (index, todos) => ({
     type: types.TOGGLE,
-    id: id,
+    index: index,
     todoState: todos
 });
 

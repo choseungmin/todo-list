@@ -60,6 +60,7 @@ function todo(state = initialState, action) {
                 }
             };
         case types.TOGGLE:
+            debugger;
             return {
                 todoState: {
                     input: todoState.input,
