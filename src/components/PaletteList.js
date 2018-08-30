@@ -7,11 +7,11 @@ class PaletteList extends Component {
 
         render() {
 
-            const { colors } =  this.props;
+            const { colors, onColor } =  this.props;
 
             const paletteList = colors.map(
                 ( {color, checked}, i) => (
-                    <PaletteItem key={i} color={color} checked={checked}/>
+                    <PaletteItem key={i} color={color} checked={checked} onColor={onColor}/>
                 )
             )
 

@@ -10,9 +10,9 @@ class App extends Component {
     state = {
         input: '',
         todos: [
-            { id: 0, text: 'aaa', checked: false },
-            { id: 1, text: 'bbb', checked: true },
-            { id: 2, text: 'ccc', checked: false },
+            { id: 0, text: 'aaa', checked: false, color: '#343a40' },
+            { id: 1, text: 'bbb', checked: true, color: '#343a40' },
+            { id: 2, text: 'ccc', checked: false, color: '#12b886' },
         ],
         colors: [
             {color: '#343a40', checked: true},
@@ -29,14 +29,24 @@ class App extends Component {
     };
 
     handleCreate = () => {
-        const { input, todos } = this.state;
+        const { input, todos, colors } = this.state;
+
+        const { color } = colors.find(
+            (item) => {
+                if(item.checked) {
+                    return item
+                }
+            }
+        );
+
         this.setState({
             input: '', //input 비우고
             //concat 을 사용하여 배열 추가
             todos: todos.concat({
                 id: this.id ++,
                 text: input,
-                checked: false
+                checked: false,
+                color: color
             })
         });
     };
@@ -74,6 +84,21 @@ class App extends Component {
         });
     };
 
+    handleColor = (selColor) => {
+        const { colors } = this.state;
+
+        this.setState({
+            colors: colors.map(
+                (item) => {
+                    return {
+                        color: item.color,
+                        checked: (item.color === selColor)
+                    }
+                }
+            )
+        })
+    };
+
 
     render() {
 
@@ -83,17 +108,34 @@ class App extends Component {
             handleCreate,
             handleRemove,
             handleKeyPress,
-            handleToggle
+            handleToggle,
+            handleColor
         } = this;
+
+        const { color } = colors.find(
+            (item) => {
+                if(item.checked === true)
+                    return item.color
+            }
+        );
 
         return (
             <div className="App">
                 <TodoListTemplate
                     form={(
-                        <Form value={input} onKeyPress={handleKeyPress} onChange={handleChange} onCreate={handleCreate} />
+                        <Form
+                            value={input}
+                            onKeyPress={handleKeyPress}
+                            onChange={handleChange}
+                            onCreate={handleCreate}
+                            color={color}
+                        />
                     )}
                     palette={(
-                        <PaletteList colors={colors}/>
+                        <PaletteList
+                            colors={colors}
+                            onColor={handleColor}
+                        />
                     )}
                 >
                     <TodoItemList

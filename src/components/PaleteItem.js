@@ -6,14 +6,13 @@ class PaleteItem extends Component {
 
     render() {
 
-        const { color, checked } = this.props;
+        const { color, checked, onColor } = this.props;
 
-        console.log(checked)
         return (
             <div
-
                 className={checked===true?"color active":"color false"}
                 style={{backgroundColor: color}}
+                onClick={() => onColor(color)}
             />
         )
     }
