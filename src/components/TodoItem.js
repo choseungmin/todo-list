@@ -7,7 +7,7 @@ class TodoItem extends Component {
         return this.props.checked !== nextProps.checked;
     };
     
-    render() {
+    render() { 
 
         const { text, checked, id, onToggle, onRemove, color } = this.props;
 
