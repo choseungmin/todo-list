@@ -4,6 +4,9 @@ import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
 import PaletteList from './components/PaletteList';
 
+import PaletteListContainers from './containers/PaletteListContainer';
+import TodoItemListContainers from './containers/TodoItemListContainer';
+
 class App extends Component {
 
     id = 3;
@@ -42,7 +45,7 @@ class App extends Component {
         this.setState({
             input: '', //input 비우고
             //concat 을 사용하여 배열 추가
-            todos: todos.concat({
+            todoState: todos.concat({
                 id: this.id ++,
                 text: input,
                 checked: false,
@@ -66,7 +69,7 @@ class App extends Component {
         const selected = todos[index]; //선택한 객체
 
         this.setState({
-            todos: [
+            todoState: [
                 ...todos.slice(0, index),
                 {
                     ...selected,
@@ -80,7 +83,7 @@ class App extends Component {
     handleRemove = (id) => {
         const { todos } = this.state;
         this.setState({
-            todos: todos.filter(todo => todo.id !== id)
+            todoState: todos.filter(todo => todo.id !== id)
         });
     };
 
@@ -132,17 +135,15 @@ class App extends Component {
                         />
                     )}
                     palette={(
-                        <PaletteList
-                            colors={colors}
-                            onColor={handleColor}
-                        />
+                        <PaletteListContainers/>
                     )}
                 >
-                    <TodoItemList
+                    {/*<TodoItemList
                         todos={todos}
                         onToggle={handleToggle}
                         onRemove={handleRemove}
-                    />
+                    />*/}
+                    <TodoItemListContainers/>
                 </TodoListTemplate>
             </div>
         );

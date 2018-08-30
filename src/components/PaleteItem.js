@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class PaleteItem extends Component {
+const PaleteItem = ({index, color, checked, onSetColor}) => {
 
+    return (
+        <div
+            className={checked===true?"color active":"color false"}
+            style={{backgroundColor: color}}
+            onClick={() => onSetColor(index)}
+        />
+    );
+};
 
+PaleteItem.propTypes = {
+    color: PropTypes.string,
+    checked: PropTypes.bool,
+    onSetColor: PropTypes.func
+};
 
-    render() {
-
-        const { color, checked, onColor } = this.props;
-
-        return (
-            <div
-                className={checked===true?"color active":"color false"}
-                style={{backgroundColor: color}}
-                onClick={() => onColor(color)}
-            />
-        )
-    }
+PaleteItem.defaultProps = {
+    color: '#343a40',
+    checked: false,
+    onSetColor: () => console.warn('onSetColor not defined')
 };
 
 export default PaleteItem;
