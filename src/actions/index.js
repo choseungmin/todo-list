@@ -5,26 +5,23 @@ export const change = (input) => ({
     input: input
 });
 
-export const create = (input, todos, color) => ({
+export const create = (input, color) => ({
     type: types.CREATE,
     input: input,
-    todoState: todos,
     color: color
 });
 
-export const remove = (id, todos) => ({
+export const remove = (index) => ({
     type: types.REMOVE,
-    id: id,
-    todoState: todos
+    index: index
 });
 
 export const toggle = (index, todos) => ({
     type: types.TOGGLE,
-    index: index,
-    todoState: todos
+    index: index
 });
 
 export const setColor = (index) => ({
     type: types.SET_COLOR,
     index
-})
+});

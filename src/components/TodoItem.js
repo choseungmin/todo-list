@@ -15,7 +15,7 @@ const TodoItem = ({ text, checked, index, onToggle, onRemove, color }) => {
             </div>
             { checked && (<div className="chec-mark">✓</div>) }
         </div>
-    )
+    );
 };
 
 TodoItem.propTypes = {
@@ -34,7 +34,6 @@ TodoItem.defaultProps = {
     onToggle: () => console.warn('onToggle not defined'),
     onRemove: () => console.warn('onRemove not defined'),
     color: 'red'
-
 };
 
 export default TodoItem;

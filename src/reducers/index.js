@@ -4,9 +4,9 @@ const initialState = {
     todoState: {
         input: '',
         todos: [
-            { id: 0, text: 'aaa', checked: false, color: '#343a40' },
-            { id: 1, text: 'bbb', checked: true, color: '#343a40' },
-            { id: 2, text: 'ccc', checked: false, color: '#12b886' },
+            { text: 'react', checked: false, color: '#343a40' },
+            { text: 'redux', checked: true, color: '#228ae6' },
+            { text: 'route', checked: false, color: '#12b886' },
         ],
         colors: [
             {color: '#343a40', checked: true},
@@ -16,8 +16,6 @@ const initialState = {
         ]
     }
 };
-
-let id = 3;
 
 function todo(state = initialState, action) {
 
@@ -35,14 +33,13 @@ function todo(state = initialState, action) {
         case types.CREATE:
             return {
                 todoState: {
-                    input: todoState.input,
+                    input: '',
                     todos: [
                         ...todoState.todos,
                         {
-                            id: id++,
-                            text: action.text,
+                            text: action.input,
                             checked: false,
-                            color: action.text
+                            color: action.color
                         }
                     ],
                     colors: [...todoState.colors]
@@ -60,17 +57,16 @@ function todo(state = initialState, action) {
                 }
             };
         case types.TOGGLE:
-            debugger;
             return {
                 todoState: {
                     input: todoState.input,
                     todos: [
-                        todoState.todos.slice(0, action.index),
+                        ...todoState.todos.slice(0, action.index),
                         {
                             ...todoState.todos[action.index],
                             checked: !todoState.todos[action.index].checked,
                         },
-                        todoState.todos.slice(action.index+1, todoState.todos.length)
+                        ...todoState.todos.slice(action.index+1, todoState.todos.length)
                     ],
                     colors: [...todoState.colors]
                 }
@@ -87,12 +83,12 @@ function todo(state = initialState, action) {
                                 checked: index === action.index
                             }
                         }
-                    )
-                }
+                    ) // color
+                } // todoState
             };
         default:
             return state;
-    };
+    }
 };
 
 export default todo;
