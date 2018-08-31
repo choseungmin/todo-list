@@ -1,36 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoItem from './TodoItem';
 
-class TodoItemList extends Component {
+const TodoItemList = ({ todoState, onToggle, onRemove }) => {
 
-    // input(form)의 텍스트 수정시(state 변화시) todoItemList는 변함이 없으면 리랜더링 안되도록 하기
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.props.todos !== nextProps.todos;
-    }
+    const { todos } = todoState;
 
-    render() {
-        const { todos, onToggle, onRemove } = this.props;
+    const todoList = todos.map(
 
-        const todoList = todos.map(
-            ({id, text, checked, color}) => (
-                <TodoItem
-                    id={id}
-                    text={text}
-                    checked={checked}
-                    onToggle={onToggle}
-                    onRemove={onRemove}
-                    key={id}
-                    color={color}
-                />
-            )
-        );
+        (item, i) => (
+            <TodoItem
+                key={i}
+                index={i}
+                onToggle={onToggle}
+                onRemove={onRemove}
+                {...item}
+            />
+        )
+    );
 
-        return (
-            <div>
-                {todoList}
-            </div>
-        );
-    };
+    return (
+        <div className="todoList">
+            {todoList}
+        </div>
+    );
 };
 
 export default TodoItemList;

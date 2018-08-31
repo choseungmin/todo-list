@@ -1,41 +1,29 @@
-import React, { Component } from 'react';
-import PaletteItem from './PaletteItem';
+import React from 'react';
+import PaletteItem from './PaleteItem'
 import './PaletteList.css';
 
-class Palette extends Component {
-
-    /*
-    const Color = ({ color, active, onClick }) => {
-      // 구현
-    }
-
-    const Palette = ({colors, selected, onSelect}) => {
-      // 구현
-    };
-    */
-    render() {
-        const { colors, onColor } = this.props;
-
-        const paletteItems = colors.map(
-            ({ color, checked },index) => (
-                <PaletteItem
-                    color={color}
-                    checked={checked}
-                    id = {index}
-                    key={index}
-                    onColor={onColor}
-                />
-            )
-        );
-
-        return (
-            <div className="palette">
-                {paletteItems}
-            </div>
-        );
-    };
 
 
+const PaletteList = ({ todoState, onSetColor }) => {
+
+    const { colors } = todoState;
+
+    const paletteList = colors.map(
+        (item, i) => (
+            <PaletteItem
+                key={i}
+                index={i}
+                {...item}
+                onSetColor={onSetColor}
+            />
+        )
+    )
+
+     return (
+         <div className="paletteList" style={{backgroundColor: '#f1f3f5'}}>
+             { paletteList }
+         </div>
+     )
 };
 
-export default Palette;
+export default PaletteList;

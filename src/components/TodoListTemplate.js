@@ -1,20 +1,25 @@
 import React from 'react';
 import './TodoListTemplate.css';
 
-const TodoListTemplate = ({form, children, colors}) => {
+import PaletteListContainer from '../containers/PaletteListContainer';
+import TodoItemListContainer from '../containers/TodoItemListContainer';
+import FormContainer from '../containers/FormContainer';
+
+const TodoListTemplate = () => {
+
     return (
         <main className="todo-list-template">
             <div className="title">
                 오늘 할 일
             </div>
-            <section className="palette-template">
-                {colors}
+            <section className="palette-wrapper">
+                <PaletteListContainer/>
             </section>
             <section className="form-wrapper">
-                {form}
+                <FormContainer/>
             </section>
             <section className="todos-wrapper">
-                {children}
+                <TodoItemListContainer/>
             </section>
         </main>
     );
